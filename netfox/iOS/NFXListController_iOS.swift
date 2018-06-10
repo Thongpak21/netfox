@@ -12,7 +12,7 @@ import UIKit
 
 
 @available(iOS 8.0, *)
-class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchControllerDelegate
+public class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchControllerDelegate
 {
     // MARK: Properties
     
@@ -21,7 +21,7 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
     
     // MARK: View Life Cycle
     
-    override func viewDidLoad()
+    override public func viewDidLoad()
     {
         super.viewDidLoad()
         
@@ -82,7 +82,7 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
             object: nil)        
     }
     
-    override func viewWillAppear(_ animated: Bool)
+    override public func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         reloadTableViewData()
@@ -97,12 +97,12 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
 
     @objc func closeButtonPressed()
     {
-        NFX.sharedInstance().hide()
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: UISearchResultsUpdating
     
-    func updateSearchResults(for searchController: UISearchController)
+    public func updateSearchResults(for searchController: UISearchController)
     {
         self.updateSearchResultsForSearchControllerWithString(searchController.searchBar.text!)
         reloadTableViewData()
@@ -115,7 +115,7 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
     
     // MARK: UITableViewDataSource
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if (self.searchController.isActive) {
             return self.filteredTableData.count
@@ -124,7 +124,7 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(NFXListCell.self), for: indexPath) as! NFXListCell
         
@@ -143,7 +143,7 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
     {
         return UIView.init(frame: CGRect.zero)
     }
@@ -156,12 +156,12 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int
+    public func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         var detailsController : NFXDetailsController_iOS
         detailsController = NFXDetailsController_iOS()
@@ -176,7 +176,7 @@ class NFXListController_iOS: NFXListController, UITableViewDelegate, UITableView
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return 58
     }

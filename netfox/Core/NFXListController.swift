@@ -7,12 +7,12 @@
 
 import Foundation
 
-class NFXListController: NFXGenericController {
+public class NFXListController: NFXGenericController {
 
     var tableData = [NFXHTTPModel]()
     var filteredTableData = [NFXHTTPModel]()
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()        
     }
     
