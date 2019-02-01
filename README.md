@@ -14,7 +14,9 @@ It grabs all requests - of course yours, requests from 3rd party libraries (such
 
 Very useful and handy for network related issues and bugs
 
-Supports Swift 3.2 and 4 - bridged also for Objective-C
+Supports Swift 4 and above - bridged also for Objective-C.
+
+For Swift 3.2 support, use version [1.12.1](https://github.com/kasketis/netfox/releases/tag/1.12.1).
 
 Feel free to contribute :)
 
@@ -31,6 +33,13 @@ Feel free to contribute :)
 <pre>
 use_frameworks!
 pod 'netfox'
+</pre>
+
+To bundle only on some build configurations specify them after pod.
+
+<pre>
+use_frameworks!
+pod 'netfox', :configurations => ['Debug', 'Test']
 </pre>
 
 ### Carthage
@@ -58,7 +67,7 @@ The above folder contains 3 subfolders: Core, iOS and OSX.
 #### Swift
 ```swift
 // AppDelegate
-import netfox_ios
+import netfox
 NFX.sharedInstance().start() // in didFinishLaunchingWithOptions:
 ```
 
@@ -67,7 +76,7 @@ NFX.sharedInstance().start() // in didFinishLaunchingWithOptions:
 #### Objective-C
 ```objective-c
 // AppDelegate
-[[NFX sharedInstance] start]; // in didFinishLaunchingWithOptions:
+[NFX.sharedInstance start]; // in didFinishLaunchingWithOptions:
 ```
 
 Just simple as that!
